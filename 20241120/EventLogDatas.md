@@ -1,0 +1,365 @@
+# Event Log について
+Windows上で発生したイベントの多くはイベントビューアに格納されるが、そこでは発生したイベント毎に分類が行われている。これにより、
+どのようなイベントがいつ発生したかを判断できるというメリットがある一方で、それぞれの繋がりが見えにくいという欠点も発生している。
+したがって、ログを個別で収集することは攻撃を解析するうえであまり優れているとは言えない。そこで、サイバー攻撃が行われた際に重要
+となるイベントログを事前に調べておき、それらを収集出来れば、攻撃者が行ったことを調べる手掛かりになるはずである。以下ではそれぞれの
+ログがどのような意味を持つのかを調べたうえで、攻撃が起きた際に痕跡が残るかどうかの判断を行う。
+
+まず、STARDUST上で現状取得できるログ(できれば番号も)を列挙する。
+
+---
+
+- イベントビューアー(ローカル)
+  - カスタムビュー
+    - 管理イベント
+  - Windowsログ
+    - Application
+    - セキュリティ
+    - Setup
+    - システム
+    - Forwarded Events
+  - アプリケーションとサービスログ
+    - Internet Explorer
+    - Microsoft
+      - AppV
+        - Client
+          - Admin
+          - Operational
+          - Virtual Applications
+      - User Experience Virtualization
+        - Agent Driver
+          - 稼働中
+        - App Agent
+          - 稼働中
+        - IPC
+          - 稼働中
+        - SQM Uploader
+          - 稼働中
+      - Windows
+        - AAD
+        - All-User-Install-Agent
+        - AllJoyn
+        - AppHost
+        - AppID
+        - ApplicabilityEngine
+        - Application-Experience
+        - AppLocker
+        - AppModel-Runtime
+        - AppReadiness
+        - Apps
+        - Apps-API
+        - AppXDeployment
+        - AppXDeployment-Server
+        - AppxPackagingOM
+        - ASN1
+        - AssignedAccess
+        - AssignedAccessBroker
+        - ATAPort
+        - Audio
+        - Authentication
+        - Authentication User Interface
+        - BackgroundTaskInfrastructure
+        - BackgroundTransfer-ContentPrefetcher
+        - Backup
+        - Base-Filtering-Engine-Connections
+        - Base-Filtering-Engine-Resource-Flows
+        - Biometrics
+        - BitLocker-API
+        - BitLocker-DrivePreparationTool
+        - Bits-Client
+        - Bluetooth-BthLEPreparing
+        - Bluetooth-BthMini
+        - Bluetooth-MTPEnum
+        - Bluetooth-Policy
+        - BranchCache
+        - BranchCacheSMB
+        - Build-RegDll
+        - CAPI2
+        - CertificateServicesClient-CredentialRoaming
+        - CertificateServicesClient-Lifecycle-System
+        - CertificateServicesClient-Lifecycle-User
+        - CertPolEng
+        - Cleanmgr
+        - Client-Licensing
+        - CloudRestoreLauncher
+        - CloudStore
+        - CodeIntegrity
+        - Compat-Appraiser
+        - Containers-BindFlt
+        - Containers-Wcifs
+        - Containers-Wcnfs
+        - CoreSystem-SmsRouter
+				-	CorruptedFileRecovery-Client
+				-	CorruptedFileRecovery-Server
+				-	Crypto-DPAPI
+				-	Crypto-NCrypt
+				-	DAL-Provider
+				-	DataIntegrityScan
+				-	DateTimeControlPanel
+				-	Deduplication
+				-	Desired State Configuration
+				-	DeviceGuard
+				-	DeviceManagement-Enterprise-Diagnostics-Provider
+				-	Devices-Background
+				-	DeviceSetupManager
+				-	DeviceSync
+				-	DeviceUpdateAgent
+				-	Dhcp-Client
+				-	DHCPv6-Client
+				-	Diagnosis-DPS
+				-	Diagnosis-PCW
+				-	Diagnosis-PLA
+				-	Diagnosis-Scheduled
+				-	Diagnosis-Scripted
+				-	Diagnosis-Scripted DiagnosticsProvider
+				-	Diagnostics-Networking
+				-	Diagnostics-Performance
+				-	Disk
+				-	Disk Diagnostic
+				-	DiskDiagnostic DataCollector
+				-	Disk Diagnostic Resolver
+				-	DisplayColorCalibration
+				-	DNS Client Events
+				-	DriverFrameworks-UserMode
+				-	Duc UpdateAgent
+				-	DxgKrnl
+				-	EapHost
+				-	EapMethods-RasChap
+				-	EapMethods-RasTls
+				-	EapMethods-Sim
+				-	EapMethods-Ttls
+				-	EDP-AppLearning
+				-	EDP-Audit-Regular
+				-	EDP-Audit-TCB
+				-	Energy-Estimation-Engine
+				-	ESE
+				-	EventCollector
+				-	Eventlog-ForwardingPlugin
+				-	Fault-Tolerant-Heap
+				-	FeatureConfiguration
+				-	FileHistory-Core
+				-	FileHistory-Engine
+				-	FlexibleClip
+				-	FMS
+				-	Folder Redirection
+				-	Generic Roaming
+				-	gland
+				-	GroupPolicy
+				-	HelloForBusiness
+				-	Help
+				-	HomeGroup Control Panel
+				-	HomeGroup Provider Service
+				-	HomeGroup-ListenerService
+				-	HotspotAuth
+				-	HttpLog
+				-	HttpService
+				-	Hyper-V-Guest-Drivers
+				-	Hyper-V-Hypervisor
+				-	Hyper-V-VID
+				-	IdCtrls
+				-	International-RegionalOptionsControlPanel
+				-	Iphlpsvc
+				-	IPxlatCfg
+				-	KdsSvc
+				-	Kernel-ApphelpCache
+				-	Kernel-Boot
+				-	Kernel-EventTracing
+				-	Kernel-10
+				-	Kernel-LiveDump
+				-	Kernel-PnP
+				-	Kernel-Power
+				-	Kernel-ShimEngine
+				-	Kernel-StoreMgr
+				-	Kernel-WDI
+				-	Kernel-WHEA
+				-	KeyboardFilter
+				-	KnownFolders
+				-	LanguagePackSetup
+				-	LAPS
+				-	LinkLayerDiscoveryProtocol
+				-	Liveld
+				-	LSA
+				-	Management-SecureAssessment
+				-	MediaFoundation-Performance
+				-	Memory Diagnostics-Results
+				-	Mobile-Broadband-Experience-Parser-Task
+				-	Mobile-Broadband-Experience-SmsApi
+				-	Modern Deployment-Diagnostics-Provider
+				-	Mprddm
+				-	MSPaint
+				-	MUI
+				-	Ncasvc
+				-	NcdAutoSetup
+				-	NCSI
+				-	NDIS
+				-	NdislmPlatform
+				-	NetworkProfile
+				-	NetworkProvider
+				-	NetworkProvisioning
+				-	NlaSvc
+				-	Ntfs
+				-	NTLM
+				-	OcpUpdateAgent
+				-	OfflineFiles
+				-	OneBackup
+				-	OneX
+				-	OOBE-Machine-DUI
+				-	OtpCredentialProvider
+				-	PackageStateRoaming
+				-	Parental Controls
+				-	Partition
+				-	PerceptionRuntime
+				-	Perception SensorDataService
+				-	PersistentMemory-Nvdimm
+				-	PersistentMemory-PmemDisk
+				-	PersistentMemory-ScmBus
+				-	Policy-based QoS
+				-	PowerShell
+				-	PowerShell-DesiredStateConfiguration-FileDownloadManager
+				-	Primary Networklcon
+				-	PrintBRM
+				-	PrintService
+				-	Privacy-Auditing
+				-	Program-Compatibility-Assistant
+				-	Provisioning-Diagnostics-Provider
+				-	Proximity-Common
+				-	PushNotifications-Platform
+				-	ReadyBoost
+				-	ReadyBoostDriver
+				-	ReFS
+				-	RemoteApp and Desktop Connections
+				-	RemoteAssistance
+				-	RemoteDesktopServices-RdpCoreTS
+				-	RemoteDesktopServices-RemoteFX-Synth3dvsc
+				-	Remote DesktopServices-SessionServices
+				-	Remotefs-Rdbss
+				-	Resource-Exhaustion-Detector
+				-	Resource-Exhaustion-Resolver
+				-	RestartManager
+				-	RetailDemo
+				-	RRAS-AGILEVPN-Provider
+				-	RRAS-Provider
+				-	Security-Adminless
+				-	Security-Audit-Configuration-Client
+				-	Security-EnterpriseData-FileRevocation Manager
+				-	Security-ExchangeActiveSyncProvisioning
+				-	Security-IdentityListener
+				-	Security-Kerberos
+				-	Security-LessPrivileged AppContainer
+				-	Security-Mitigations
+				-	Security-Netlogon
+				-	Security-SPP-UX-GenuineCenter-Logging
+				-	Security-SPP-UX-Notifications
+				-	Security-UserConsentVerifier
+				-	Security MitigationsBroker
+				-	SENSE
+				-	SenselR
+				-	Service Reporting API
+				-	SettingSync
+				-	SettingSync-Azure
+				-	SettingSync-OneDrive
+				-	Shell-Connected AccountState
+				-	Shell-Core
+				-	ShellCommon-StartLayoutPopulation
+				-	SmartCard-Audit
+				-	SmartCard-DeviceEnum
+				-	SmartCard-TPM-VCard-Module
+				-	SmartScreen
+				-	SMBClient
+				-	SMBDirect
+				-	SMBServer
+				-	SMBWitnessClient
+				-	StateRepository
+				-	Storage-Tiering
+				-	StorageManagement
+				-	StorageSettings
+				-	StorageSpaces-Driver
+				-	StorageSpaces-ManagementAgent
+				-	StorageSpaces-SpaceManager
+				-	StorDiag
+				-	Store
+				-	StorPort
+				-	Storsvc
+				-	Sysmon
+				-	SystemSettings Threshold
+				-	TaskScheduler
+				-	TCPIP
+				-	TenantRestrictions
+				-	TerminalServices-ClientActiveXCore
+				-	TerminalServices-ClientUSBDevices
+				-	TerminalServices-LocalSessionManager
+				-	TerminalServices-PnP Devices
+				-	Terminal Services-Printers
+				-	TerminalServices-RemoteConnectionManager
+				-	Terminal Services-ServerUSBDevices
+				-	Time-Service
+				-	Time-Service-PTP-Provider
+				-	Troubleshooting-Recommended
+				-	TZSync
+				-	TZUtil
+				-	UAC
+				-	UAC-FileVirtualization
+				-	Ul-Search
+				-	Universal TelemetryClient
+				-	User Control Panel
+				-	User Device Registration
+				-	User Profile Service
+				-	User-Loader
+				-	UserPnp
+				-	UserSettingsBackup-BackupUnitProcessor
+				-	UserSettingsBackup-Orchestrator
+				-	VDRVROOT
+				-	VerifyHardwareSecurity
+				-	VHDMP
+				-	Volume
+				-	VolumeSnapshot-Driver
+				-	Vpn Plugin Platform
+				-	VPN-Client
+				-	Wcmsvc
+				-	WDAG-PolicyEvaluator-CSP
+				-	WDAG-PolicyEvaluator-GP
+				-	WebAuth
+				-	WebAuthN
+				-	WebIO
+				-	WEPHOSTSVC
+				-	WER-PayloadHealth
+				-	WFP
+				-	WiFiNetworkManager
+				-	Win32k
+				-	Windows Defender
+				-	Windows Firewall With Advanced Security
+				-	Windows Remote Management
+				-	WindowsBackup
+				-	WindowsColorSystem
+				-	WindowsSystemAssessment Tool
+				-	WindowsUllmmersive
+				-	WindowsUpdateClient
+				-	WinHttp (Microsoft-Windows-WinHttp)
+				-	WinHttp (Microsoft-Windows-WinlNet-Config)
+				-	WinlNet (Microsoft-Windows-WinlNet-Capture)
+				-	Winlogon
+				-	WinNat
+				-	Winsock Catalog Change
+				-	Winsock NameResolution Event
+				-	Winsock Network Event
+				-	Wired-AutoConfig
+				-	WLAN-AutoConfig
+				-	wmbclass
+				-	WMI-Activity
+				-	WMPNSS-Service
+				-	Wordpad
+				-	WorkFolders
+				-	Workplace Join
+				-	WPD-ClassInstaller
+				-	WPD-CompositeClassDriver
+				-	WPD-MTPClassDriver
+				-	WWAN-SVC-EVENTS
+
+    - Microsoft Office Alerts
+    - OpenSSH
+      - Admin
+      - Operational
+    - Windows PowerShell
+    - キー管理システム
+    - ハードウェアイベント
+  - サブスクリプション
