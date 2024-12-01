@@ -28,7 +28,11 @@ I need to brush up this table.
       - What logs are relaated to cyber attacks -> Overview is known, but details are not known...
     - About prices
       - Some services depends on the amount of data of logs per day or month
-1. a
+        - Maximum amount of Client Logs per an hour (no cyber attack)-> 20MB.
+        - When we can use services (per day -> 1GB per month -> 30GB), we will have no 
+problems of log volume...?
+      - Functions that must be needed
+        - Analyze what logs are different significantly between normal and abnormal conditions. -> To know logs that indicate cyber attack...
 ## Problems and Questions
 
 ## What I will do in this week
