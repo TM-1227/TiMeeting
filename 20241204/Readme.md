@@ -1,12 +1,12 @@
 # Progress Report
 
-## Contents
+## Agenda
 - What I did in this 2 weeks and before 2 weeks
 - Problems and Questions
 - My assignments
 ## What I have done more than 2 weeks ago and assignment in this 2 weeks
 ### What I have done
-1. I want to use STARDUST to observe what cyber crimers do in company Internet environment ->
+1. I want to use STARDUST to observe what cyber crimers do in Internet environment ->
 2. I need to know what cyber attackers can do and how I can observe that ->
 3. I used WireShark and Sysmon. 
     - Sysmon is a tool related to event logs.
@@ -23,16 +23,21 @@ I need to brush up this table.
       - **What logs are** thought to be **related to cyber attacks against companies?**
         - I found interesting paper
           - National Security Agency provide a table of all the event codes that they find interesting for detecting baddies in windows network.(Windows 7,8 and this article was published 10 years before)
-          - I couldn't find this type of paper written recently
-        - Some articles show some logs, but not all logs are not same.
+            - I couldn't find this type of paper written recently
+          - Some articles show some logs, but not all logs are not same.
       - What logs are relaated to cyber attacks -> Overview is known, but details are not known...
     - About prices
       - Some services depends on the amount of data of logs per day or month
         - Maximum amount of Client Logs per an hour (no cyber attack)-> 20MB.
+          - I think Server log is not event log(no need to use send service)
         - When we can use services (per day -> 1GB per month -> 30GB), we will have no 
-problems of log volume...?
-      - Functions that must be needed
-        - Analyze what logs are different significantly between normal and abnormal conditions. -> To know logs that indicate cyber attack...
+    problems about log volume...?
+2. Selected services arroding to data-volume-problem.
+3. aa
+4. bb
+5. cc
+6. dd
+
 ## Problems and Questions
 
 ## What I will do in this week
