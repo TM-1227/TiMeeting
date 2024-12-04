@@ -19,48 +19,29 @@
      - 現在、どのようなイベントログが企業ネットワークへのサイバー攻撃と関連があると考えられているのかを知るため、調査を行った。
        - 複数のサイトで共通して指摘されているログもあったが、片方でしか指摘されていないログももちろんあった。ただし、2014年頃に発表された資料にはかなりの量のログが記載されていたので、私が見逃しているだけの可能性もある。
 
-![](20241204_log.png)
-      
+      出典 : https://cryptome.org/2014/01/nsa-windows-event.pdf 
+      ![](20241204_log.png)
+      - まとめると、どのようなログがサイバー攻撃に関わっているのかがある程度判明している一方で、完全には判明していないと考えた。
+      - ffri yaraiもログデータを収集するサービスの1つではあるが、異常検出を行い収集するようなので、攻撃中のログの取りこぼしを考慮すると、攻撃者の完全な行動把握にはつながらない可能性があるので使わない方針。
+      - このため、収集するログについては制限を設けないでおきたいと考えている(すべてとる)。
    - 料金について
      - Graylogのように、最初から値段が確定しているようなサービスもあれば、ログの量によって値段が決まるようなサービスもあることが分かった。
-![](20241204_price.png)
+       
+     ![](20241204_price.png)
 
      - そのため、STARDUST全体で出ているログの量を知ることが重要ではないかと考え、テナント273のWin05において、オープンソースであるnxlogを用いて送信を行い、それをWireSharkでキャプチャすることで1時間あたりのすべてのイベントログのデータ量を測定した。結果は64MB/hである。ただし、ほぼ毎回ackが届く前にイベントログが再送されているので、うまく工夫すれば30MB/h程度になる可能性もある。(今回は64MB/hとします。)すると、STARDUST全体で1日に発生するログのデータ量は、64 * 50(クライアント数) * 24(h) ≒ 80GB/day であると見積もった。
-1. Think how to improve this table. I got advices that I should focus on logs that I can get and price.
+     - 上記のログデータの条件に合致しない契約を赤色にして示したのが以下の図である。
 
-    - About logs
-      - Back bround
-        - **What logs are** thought to be **related to cyber attacks against companies?**
-         - I found interesting paper
-            - National Security Agency provide a table of all the event codes that they find interesting for detecting baddies in windows network.(Windows 7,8 and this article was published 10 years before)
-             - I couldn't find this type of paper written recently
-            - Some articles show some logs, but not all logs are not same.
-        - What logs are related to cyber attacks -> Overview is known, but details are not known...
-      - I had to gather logs from STARDUST.
-        - ffri yarai is used to get client log, but it is not good for honeypot.
-      - I installed a service to send event log to syslog, and the amount of data was 6-7MB in 400seconds. -> STARDUST's event log per day may be 75GB(I will check later.)
-    - About prices
-      - Some services depends on the amount of data of logs per day or month
-      - When we can use services (per day -> 100GB per month -> 3000GB), we will have no 
-    problems about log volume...? -> I changed contracts not suitable due to data volume to red color
+      ![](20241204_red.png)
 
-    ![](20241204_red.png)
+syslog-ng, rsyslogはログの解析と少し違う方面のサービスなので、データ量が足りなそうなGraylogとともに除去すると、以下の3サービスが候補として残った。
 
-What service is good for our research ...?
+Loggly,Papertrail,Splunkである。これらはいずれもnxlogを使用してログ収集が出来るので、すべてのログの収集は可能である。
 
-- Unlike the other four services, syslog-ng and rsyslog are not services that are deployed primarily for log analysis.
-
-Now, I will focus on 3 services. Loggly, Papertrail, and Splunk.
-
-2. Loggly vs Papertrail vs Splunk
-How I should choose from these services -> 
-    - I want to capture all event logs -> I know they have at least 1 way to capture them.
-    - I want additional function , ex : visible function
-      - Loggly pro. vs company.
-        Pro is good for analyzing,and company contract is good for workers and analyzing some types of log.
-    - anomaly detection : loggly (company) and splunk
 ## Problems and Questions
-- Is my method of measuring the amount of data collect ?
+- 私の行っている調査方法が正しいかどうか
+- すべてのログをとるという手法が必ずしも正しいかどうか
+- どのような点を重視してこの3つから選出をおこなうべきか
 ## What I will do in this week
-I want to determine which service to use and contact to splunk
+この3つの中から選出するのと、splunkにコンタクトをとってみる。
 
