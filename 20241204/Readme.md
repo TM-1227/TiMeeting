@@ -38,13 +38,20 @@ I need to brush up this table.
 
     ![](20241204_red.png)
 
-3. What service is good for our research ...?
-    - I want to capture all event logs
-    - I want additional function , ex : visible function
-    - Unlike the other four services, syslog-ng and rsyslog are not services that are deployed primarily for log analysis.
-4. 
-  
+What service is good for our research ...?
 
+- Unlike the other four services, syslog-ng and rsyslog are not services that are deployed primarily for log analysis.
+
+Now, I will focus on 3 services. Loggly, Papertrail, and Splunk.
+
+2. Loggly vs Papertrail vs Splunk
+How I should choose from these services -> 
+    - I want to capture all event logs -> I know they have at least 1 way to capture them.
+    - I want additional function , ex : visible function
+      - Loggly pro. vs company.
+        Pro is good for analyzing,and company contract is good for workers and analyzing some types of log.
+    - anomaly detection : loggly (company) and splunk
 ## Problems and Questions
 - Is my method of measuring the amount of data collect ?
 ## What I will do in this week
+I want to determine which service to use and contact to splunk
