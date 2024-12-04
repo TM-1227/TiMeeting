@@ -30,18 +30,20 @@ I need to brush up this table.
         - What logs are related to cyber attacks -> Overview is known, but details are not known...
       - I had to gather logs from STARDUST.
         - ffri yarai is used to get client log, but it is not good for honeypot.
-      - I installed a service to send event log to syslog, and the amount of data was 743kB in 16minutes. -> STARDUST's event log per day may be 3GB(I will check later.)
+      - I installed a service to send event log to syslog, and the amount of data was 6-7MB in 400seconds. -> STARDUST's event log per day may be 75GB(I will check later.)
     - About prices
       - Some services depends on the amount of data of logs per day or month
-        - Maximum amount of Client Logs per an hour (no cyber attack)-> 20MB.
-          - Client logs are gathered by using yarai agent. <-Extraction of logs determined to be suspicious
-        - When we can use services (per day -> 5GB per month -> 150GB), we will have no 
+      - When we can use services (per day -> 100GB per month -> 3000GB), we will have no 
     problems about log volume...? -> I changed contracts not suitable due to data volume to red color
-![](20241204_red.png)
-3. 
-    - Some services are not available.
-    - Our observing environment's scale is too small to use Splunk ...?
-4. aa
+
+    ![](20241204_red.png)
+
+3. What service is good for our research ...?
+    - I want to capture all event logs
+    - I want additional function , ex : visible function
+    - Unlike the other four services, syslog-ng and rsyslog are not services that are deployed primarily for log analysis.
+4. 
+  
 
 ## Problems and Questions
 - Is my method of measuring the amount of data collect ?
