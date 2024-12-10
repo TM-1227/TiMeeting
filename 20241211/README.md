@@ -78,6 +78,12 @@ So, I have to look for a service that will not miss any event logs. (A table bel
       - We can use our time zone.
    - When we Investigate what attackers do, high-level filter function will be required. 
 6. Splunk
-7. How to implement this service in STARDUST environment...?
+   - I couldn't find sites like loggly and papertrail, but ChatGPT says that Splunk has all loggly's function.
+7. Conclusion
+   - Funcion : Splunk > Loggly > Papertrail
+   - Price : Splunk ≒ Papertrail > Loggly
+   - If Loggly's functions fulfill our wishes, we can use that. On the contrary, if it is not good enough, we must use Splunk(or do research again).
+9. How to implement this service in STARDUST environment...?
    - I think that we need to store logs in a place where attackers cannot access, but Wireshark may imply where the storage is. So, we should install that within the STARDUST environment...?
    - 1st solution is prohibiting RDP connection to the storage client.  I want to know how it looks to attackers.
+   - 2nd solution is to place the logging client outside, so that only communications originating from within the STARDUST environment would pass through.
