@@ -79,7 +79,10 @@ So, I have to look for a service that will not miss any event logs. (A table bel
    - When we Investigate what attackers do, high-level filter function will be required. 
 6. Splunk
    - I couldn't find sites like loggly and papertrail, but ChatGPT says that Splunk has all loggly's function.
-7. Conclusion
+   ### About Splunk Cloud. vs Splunk Enterprise.
+   - Each service is used for log security.
+   - Since Splunk Enterprise allows us to be directly involved in the system, while Splunk Cloud allows the person in charge to manipulate the system, we thought Splunk Enterprise would be more suitable for frequent system changes.
+8. Conclusion
    - Funcion : Splunk > Loggly > Papertrail
    - Price : Splunk ≒ Papertrail > Loggly
    - If Loggly's functions fulfill our wishes, we can use that. On the contrary, if it is not good enough, we must use Splunk(or do research again).
