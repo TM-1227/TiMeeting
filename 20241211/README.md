@@ -69,7 +69,7 @@ So, I have to look for a service that will not miss any event logs. (A table bel
       - Same as Context.  
    8. Elegant Search
       - Event viewer is live. While we are searching older logs, new logs appear in real time.
-      - Exclusion search will filter oout ur routine events.
+      - Exclusion search will filter out our routine events.
       - Alerts email us when something unusual happen. (<- we can define)  
    9. Context
       - It is like Wireshark follow tcp stream. It is useful.
