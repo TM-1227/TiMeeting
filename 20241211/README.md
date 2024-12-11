@@ -74,7 +74,7 @@ So, I have to look for a service that will not miss any event logs. (A table bel
    9. Context
       - It is like Wireshark follow tcp stream. It is useful.
    10. Seek By Time
-         - We can junp to a specific time easily.
+         - We can jump to a specific time easily.
          - We can use our time zone.
 6. Splunk
    - I couldn't find sites like loggly and papertrail, but ChatGPT says that Splunk has all loggly's function.
