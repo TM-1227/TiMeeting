@@ -89,3 +89,8 @@ So, I have to look for a service that will not miss any event logs. (A table bel
    - I think that we need to store logs in a place where attackers cannot access, but Wireshark may imply where the storage is. So, we should install that within the STARDUST environment...?
    - 1st solution is prohibiting RDP connection to the storage client.  I want to know how it looks to attackers.
    - 2nd solution is to place the logging client outside, so that only communications originating from within the STARDUST environment would pass through.
+11. Problems and Questions
+- Is my approach correct...?
+- I want to ask Splunk about their products. How to ask them.
+- 
+### What I should do by next week
